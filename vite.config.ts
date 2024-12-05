@@ -26,11 +26,65 @@ export default defineConfig({
     }),
     nodePolyfills({
       // Include node polyfills
-      include: ['node', 'fs', 'path']
+      include: [
+        'assert',
+        'buffer',
+        'console',
+        'constants',
+        'crypto',
+        'domain',
+        'events',
+        'fs',
+        'http',
+        'https',
+        'os',
+        'path',
+        'process',
+        'punycode',
+        'querystring',
+        'stream',
+        'string_decoder',
+        'sys',
+        'timers',
+        'tty',
+        'url',
+        'util',
+        'vm',
+        'zlib'
+      ],
+      // Tambahkan polyfill untuk protokol node:
+      protocolImports: true
+
     }),
     tsconfigPaths(),
   ],
   optimizeDeps: {
-    exclude: ['@resvg/resvg-js', 'path', 'fs']
+    exclude: [
+      '@resvg/resvg-js', 
+      'assert',
+      'buffer',
+      'console',
+      'constants',
+      'crypto',
+      'domain',
+      'events',
+      'fs',
+      'http',
+      'https',
+      'os',
+      'path',
+      'process',
+      'punycode',
+      'querystring',
+      'stream',
+      'string_decoder',
+      'sys',
+      'timers',
+      'tty',
+      'url',
+      'util',
+      'vm',
+      'zlib'
+    ]
   },
 });
