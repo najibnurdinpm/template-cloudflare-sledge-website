@@ -25,6 +25,7 @@
     "front-matter": "^4.0.2",
     "isbot": "^4.4.0",
     "mdx-bundler": "^10.0.3",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.13.1",
