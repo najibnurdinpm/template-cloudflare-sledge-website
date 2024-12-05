@@ -26,11 +26,11 @@ export default defineConfig({
     }),
     nodePolyfills({
       // Include node polyfills
-      include: ['node']
+      include: ['node', 'fs', 'path']
     }),
     tsconfigPaths(),
   ],
   optimizeDeps: {
     exclude: ['@resvg/resvg-js', 'path', 'fs']
-  }
+  },
 });

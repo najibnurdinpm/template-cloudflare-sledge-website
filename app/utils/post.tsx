@@ -3,7 +3,7 @@ import { readFile } from "./fs.server";
 import path from "path";
 import { bundleMDX } from "./mdx.server";
 import haskell from "highlight.js/lib/languages/haskell";
-import fs from "node:fs";
+import fs from "fs";
 
 export type Post = {
   slug: string;
