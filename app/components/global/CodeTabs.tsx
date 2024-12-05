@@ -115,10 +115,10 @@ export default function CodeTabs({ codes, selectedPreviewPage }: ICodeTabs) {
         ))}
       </div>
       <div className="overflow-hidden">
-        <CodePreview
+        {/* <CodePreview
           code={codes[active][selectedPreviewPage]}
           language={language}
-        />
+        /> */}
       </div>
     </div>
   );
