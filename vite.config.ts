@@ -31,6 +31,6 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   optimizeDeps: {
-    exclude: ['@resvg/resvg-js', 'path']
+    exclude: ['@resvg/resvg-js', 'path', 'fs']
   }
 });
