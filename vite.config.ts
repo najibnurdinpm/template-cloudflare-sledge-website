@@ -5,6 +5,7 @@ import {
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import path from 'path'
 
 declare module "@remix-run/cloudflare" {
   interface Future {
@@ -86,5 +87,12 @@ export default defineConfig({
       'vm',
       'zlib'
     ]
+  },
+  resolve: {
+    alias: {
+      // Alias untuk fs dan fs/promises
+      'fs': path.resolve(__dirname, './node_modules/node-stdlib-browser/helpers/empty.js'),
+      'fs/promises': path.resolve(__dirname, './node_modules/node-stdlib-browser/helpers/empty.js')
+    }
   },
 });
