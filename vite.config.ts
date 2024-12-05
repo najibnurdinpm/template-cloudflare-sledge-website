@@ -4,6 +4,7 @@ import {
 } from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 declare module "@remix-run/cloudflare" {
   interface Future {
@@ -23,6 +24,13 @@ export default defineConfig({
         v3_lazyRouteDiscovery: true,
       },
     }),
+    nodePolyfills({
+      // Include node polyfills
+      include: ['node']
+    }),
     tsconfigPaths(),
   ],
+  optimizeDeps: {
+    exclude: ['@resvg/resvg-js']
+  }
 });

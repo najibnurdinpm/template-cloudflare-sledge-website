@@ -1,55 +1,202 @@
-import type { MetaFunction } from "@remix-run/cloudflare";
+import { AIOFeature, Dropdown, PricingSledgeV2 } from "~/components/global";
+import {
+  dynamicIntegrationHydrogen,
+  dynamicIntegrationNext,
+  dynamicIntegrationLiquid,
+  dynamicIntegrationWebflow,
+} from "~/data/codes/dynamic";
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+import { Section } from "~/components/layout";
+import { Description, GradientText } from "~/components/typography";
+import { Background } from "~/components/background";
+import { useState, useEffect } from "react";
+import { CodeSection, Home } from "~/components/section";
 
 export default function Index() {
+
+  type IOption = { label: string; image: string; value: string };
+  const previewCodePageOptions: IOption[] = [
+    {
+      label: "Wishlist",
+      image: "/assets/images/example_wishlist.png",
+      value: "wishlist",
+    },
+    {
+      label: "Product Review",
+      image: "/assets/images/example_product_review.png",
+      value: "review",
+    },
+    {
+      label: "Instant Search",
+      image: "/assets/images/example_instant_search.png",
+      value: "instantSearch",
+    },
+    {
+      label: "Product Filters",
+      image: "/assets/images/example_plp.png",
+      value: "plp",
+    },
+  ];
+  const [previewCodePage, setPreviewCodePage] = useState(
+    previewCodePageOptions[0]
+  );
+  let [pricingAnimation, setPricingAnimation] = useState(false);
+
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="flex flex-col items-center gap-16">
-        <header className="flex flex-col items-center gap-9">
-          <h1 className="leading text-2xl font-bold text-gray-800 dark:text-gray-100">
-            Welcome to <span className="sr-only">Remix</span>
-          </h1>
-          <div className="h-[144px] w-[434px]">
-            <img
-              src="/logo-light.png"
-              alt="Remix"
-              className="block w-full dark:hidden"
-            />
-            <img
-              src="/logo-dark.png"
-              alt="Remix"
-              className="hidden w-full dark:block"
-            />
-          </div>
-        </header>
-        <nav className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
-          <p className="leading-6 text-gray-700 dark:text-gray-200">
-            What&apos;s next?
-          </p>
-          <ul>
-            {resources.map(({ href, text, icon }) => (
-              <li key={href}>
-                <a
-                  className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {icon}
-                  {text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </div>
+    <>
+      <Background
+        position={"right"}
+        className={"mt-[430px] -z-[100] pointer-events-none"}
+      />
+      <Section title={""} pb="pb-0" pt="pt-0">
+        <Home.SledgeRating rating="5" />
+      </Section>
+      <Section
+        animation={false}
+        pt="pt-[20px]"
+        titleSize="small"
+        title={
+          <>
+            <GradientText
+              deg="96.7deg"
+              className="from-[#43C6AC]/[17.72] to-[#F8FFAE]/[42.11]"
+            >
+              One
+            </GradientText>{" "}
+            Shopify App.
+            <br />
+            Works on{" "}
+            <GradientText
+              deg="96.7deg"
+              className="from-[#43C6AC]/[17.72] to-[#F8FFAE]/[42.11]"
+            >
+              various
+            </GradientText>{" "}
+            stacks.
+          </>
+        }
+        subtitle={
+          <>
+            Build instant search, product filters, wishlist, product review,
+            etc.
+            <br className="hidden sm:block" />
+            for your store using your preferred tech stacks — in just a few
+            minutes.
+          </>
+        }
+      >
+        <AIOFeature />
+      </Section>
+
+      <Section title={""}>
+          <Home.SledgeReviews/>
+      </Section>
+
+      <Section
+        title={
+          <>
+            Everything you need for <br /> starting your{" "}
+            <GradientText
+              deg="95.97deg"
+              className="from-[#43C6AC]/[34.74] to-[#F8FFAE]/[73.44]"
+            >
+              Shopify
+            </GradientText>{" "}
+            store
+          </>
+        }
+        subtitle={
+          <>
+            Sledge provides important features that you can use in just a few
+            minutes
+            <br />
+            while you can focus on building other features for your store.
+          </>
+        }
+      >
+        {isClient && (
+          <Home.SledgeFeatures />
+        )}
+      </Section>
+
+      <Section
+        title={
+          <>
+            Works on your <br />
+            <GradientText
+              deg="93.63deg"
+              className="from-[#43C6AC]/[19.79] to-[#F8FFAE]/[52.98]"
+            >
+              preferred tech stack
+            </GradientText>
+          </>
+        }
+        subtitle={
+          <>
+            Sledge works on various tech stacks, whether it's Liquid, Headless
+            framework like Hydrogen,
+            <br className="hidden sm:block" /> Next.js and even no-code tools
+            like Webflow.
+          </>
+        }
+      >
+        {isClient && (
+          <Home.MultilingualIntegrating />
+        )}
+      </Section>
+
+      <Section
+        title={
+          <>
+            Integrate features to your store <br />{" "}
+            <GradientText
+              deg="95.41deg"
+              className="from-[#43C6AC]/[62.35] to-[#F8FFAE]/[84.6]"
+            >
+              quickly and flexibily
+            </GradientText>
+          </>
+        }
+        subtitle={
+          <>
+            See how pretty quick and flexible integrating Sledge features to
+            your store. <br className="hidden sm:block" />
+            From instant search, product filters, wishlist to product review.
+          </>
+        }
+      >
+        <CodeSection
+            image={previewCodePage.image}
+            selectedPreviewPage={previewCodePage}
+            customTitle={
+              <>
+                <div className="-mt-12 lg:mt-1 mx-auto lg:mx-0">
+                  <Description>Apps Preview: </Description>
+                </div>
+                <div className="mx-auto lg:mx-0 z-50">
+                  <Dropdown
+                    options={previewCodePageOptions}
+                    selected={previewCodePage}
+                    setSelected={setPreviewCodePage}
+                  />
+                </div>
+              </>
+            }
+            codes={{
+              Hydrogen: dynamicIntegrationHydrogen,
+              "Next.js": dynamicIntegrationNext,
+              Liquid: dynamicIntegrationLiquid,
+              Webflow: dynamicIntegrationWebflow,
+            }}
+          />
+      </Section>
+    </>
   );
 }
 
